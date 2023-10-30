@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case "-":
             case "*":
             case "/":
+
             case "%":
                 if (!input.isEmpty()) {
                     operand1 = Double.parseDouble(input);
@@ -82,12 +83,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case "CE":
+                input = "";
+                break;
+
             case "C":
+                input = "";
+                operand1 = Double.NaN;
+                operator = "";
+                break;
+
             case "←":
+                if (!input.isEmpty()) {
+                    input = input.substring(0, input.length() - 1);
+                }
+                break;
 
             case "±":
+                if (!input.isEmpty()) {
+                    double num = Double.parseDouble(input);
+                    num = -num;
+                    input = String.valueOf(num);
+                }
+                break;
+
             case "√":
+                if (!input.isEmpty()) {
+                    double num = Double.parseDouble(input);
+                    num = Math.sqrt(num);
+                    input = String.valueOf(num);
+                }
+                break;
+
             case "1/x":
+                if (!input.isEmpty()) {
+                    double value = Double.parseDouble(input);
+                    if (value != 0) {
+                        value = 1 / value;
+                        input = String.valueOf(value);
+                    } else {
+                        input = "Error";
+                    }
+                }
+                break;
 
             case "M+":
             case "M-":
