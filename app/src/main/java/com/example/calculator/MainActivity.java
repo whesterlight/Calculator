@@ -11,6 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView calculatorScreen;
+    private String input = "";
+    private String operator = "";
+    private double operand1 = Double.NaN;
+    private double operand2;
+    private double memory = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        String buttonText = ((Button) v).getText().toString();
 
+        switch (buttonText) {
+
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+
+            case ".":
+                input += buttonText;
+                break;
+
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+            case "%":
+            case "=":
+
+            case "CE":
+            case "C":
+            case "←":
+
+            case "±":
+            case "√":
+            case "1/x":
+
+            case "M+":
+            case "M-":
+            case "MC":
+            case "MR":
+            case "MS":
+        }
+
+        calculatorScreen.setText(input);
+    }
+
+    private double performOperation(double operand1, double operand2, String operator) {
+        switch (operator) {
+            case "+":
+                return operand1 + operand2;
+            case "-":
+                return operand1 - operand2;
+            case "*":
+                return operand1 * operand2;
+            case "/":
+                if (operand2 != 0) {
+                    return operand1 / operand2;
+                } else {
+                    return Double.NaN;
+                }
+            case "%":
+                return operand1 * (operand2 / 100);
+            default:
+                return operand2;
+        }
     }
 }
