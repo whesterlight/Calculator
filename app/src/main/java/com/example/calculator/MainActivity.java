@@ -127,10 +127,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case "M+":
+                // Add the current displayed value to memory
+                if (!input.isEmpty()) {
+                    double value = Double.parseDouble(input);
+                    memory += value;
+                }
+                break;
             case "M-":
+                // Subtract the current displayed value from memory
+                if (!input.isEmpty()) {
+                    double value = Double.parseDouble(input);
+                    memory -= value;
+                }
+                break;
             case "MC":
+                // Clears values from memory
+                memory = 0.0;
+                break;
             case "MR":
+                // Recall and display the value from memory
+                input = String.valueOf(memory);
+                break;
             case "MS":
+                // Store the current displayed value in memory
+                if (!input.isEmpty()) {
+                    memory = Double.parseDouble(input);
+                }
+                break;
         }
 
         calculatorScreen.setText(input);
