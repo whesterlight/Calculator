@@ -64,7 +64,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case "*":
             case "/":
             case "%":
+                if (!input.isEmpty()) {
+                    operand1 = Double.parseDouble(input);
+                    operator = buttonText;
+                    input = "";
+                }
+                break;
+
             case "=":
+                if (!input.isEmpty() && !Double.isNaN(operand1)) {
+                    operand2 = Double.parseDouble(input);
+                    double result = performOperation(operand1, operand2, operator);
+                    input = String.valueOf(result);
+                    operand1 = result;
+                    operator = "";
+                }
+                break;
 
             case "CE":
             case "C":
